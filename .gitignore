@@ -1,0 +1,43 @@
+# Python
+__pycache__/
+*.py[cod]
+*.class
+
+# Virtual Environments
+venv/
+.env
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# Docker
+Dockerfile
+docker-compose.yml
+docker-compose.override.yml
+
+# Logs
+*.log
+
+# Test
+.cache
+.pytest_cache/
+.coverage
+coverage.xml
+
+# Migrations
+alembic.ini
+alembic/
+
+# IDEs
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+*.env
