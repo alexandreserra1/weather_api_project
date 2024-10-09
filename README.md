@@ -1,4 +1,3 @@
-cat <<EOF > README.md
 # Weather API Project
 
 ## Descrição
@@ -23,13 +22,14 @@ Este projeto consiste em uma API RESTful desenvolvida com **FastAPI** que extrai
 
 - **Docker** e **Docker Compose** instalados
 - Conta no [WeatherAPI.com](https://www.weatherapi.com/) para obter a chave de API
+- Conta no [GitHub](https://github.com/) para hospedar o repositório
 
 ### Passo a Passo
 
 1. **Clonar o Repositório:**
 
     ```bash
-    git clone https://github.com/seu_usuario/weather_api_project.git
+    git clone https://github.com/alexandreserra1/weather_api_project.git
     cd weather_api_project
     ```
 
@@ -44,17 +44,79 @@ Este projeto consiste em uma API RESTful desenvolvida com **FastAPI** que extrai
 
     **⚠️ Atenção:** Nunca compartilhe seu arquivo `.env` publicamente. Ele está incluído no `.gitignore` para proteger suas informações sensíveis.
 
-3. **Rodar a Aplicação com Docker Compose:**
+3. **Criar o Arquivo `.gitignore`:**
+
+    Certifique-se de que seu arquivo `.gitignore` contenha as seguintes entradas para proteger arquivos sensíveis e desnecessários:
+
+    ```gitignore
+    # Python
+    __pycache__/
+    *.py[cod]
+    *$py.class
+
+    # Ambientes Virtuais
+    venv/
+    .env
+    env/
+    ENV/
+    env.bak/
+    venv.bak/
+
+    # Docker
+    # Remova as linhas abaixo se Dockerfile e docker-compose.yml NÃO contiverem informações sensíveis
+    Dockerfile
+    docker-compose.yml
+    docker-compose.override.yml
+
+    # Logs
+    *.log
+
+    # Testes
+    .cache
+    .pytest_cache/
+    .coverage
+    coverage.xml
+
+    # Migrações
+    alembic.ini
+    alembic/
+
+    # IDEs
+    .vscode/
+    .idea/
+    *.sublime-project
+    *.sublime-workspace
+
+    # OS
+    .DS_Store
+    Thumbs.db
+
+    # Secrets
+    *.env
+    ```
+
+    **⚠️ Importante:**
+    
+    - **Dockerfiles e docker-compose.yml:**
+      - **Se** contiverem informações sensíveis (como senhas ou tokens), **mantenha-os no `.gitignore`**.
+      - **Se não** contiverem informações sensíveis, **remova** as linhas correspondentes do `.gitignore` para que esses arquivos sejam versionados corretamente.
+    
+    - **Arquivos Sensíveis:**
+      - **Nunca** compartilhe arquivos `.env` publicamente. Eles já estão protegidos pelo `.gitignore`.
+
+4. **Rodar a Aplicação com Docker Compose:**
+
+    Inicie os serviços **PostgreSQL** e a **API** com o seguinte comando:
 
     ```bash
     docker-compose up --build
     ```
 
-    Isso iniciará os serviços **PostgreSQL** e a **API**.
+    Isso iniciará os contêineres necessários. A API estará acessível em [http://localhost:8000](http://localhost:8000).
 
-4. **Executar o Script de Extração:**
+5. **Executar o Script de Extração:**
 
-    Em um novo terminal, execute:
+    Em um novo terminal, execute o script que extrai os dados climáticos:
 
     ```bash
     docker exec -it meu_projeto_api-web-1 python data_extractor/extractor.py
@@ -62,13 +124,15 @@ Este projeto consiste em uma API RESTful desenvolvida com **FastAPI** que extrai
 
     **Substitua** `meu_projeto_api-web-1` pelo nome real do contêiner `web` (encontrado com `docker ps`).
 
-5. **Executar os Testes Automatizados:**
+6. **Executar os Testes Automatizados:**
+
+    Execute os testes automatizados com o seguinte comando:
 
     ```bash
     docker exec -it meu_projeto_api-web-1 pytest
     ```
 
-6. **Acessar a API:**
+7. **Acessar a API:**
 
     - **API:** [http://localhost:8000](http://localhost:8000)
     - **Documentação Interativa (Swagger):** [http://localhost:8000/docs](http://localhost:8000/docs)
@@ -90,3 +154,28 @@ Este projeto consiste em uma API RESTful desenvolvida com **FastAPI** que extrai
 ```http
 GET /weather/city/São Paulo HTTP/1.1
 Host: localhost:8000
+```
+### Comandos para Verificação
+
+    **Conectar-se ao Banco de Dados para Verificar os Dados:**
+
+
+**docker exec -it meu_projeto_api-db-1 psql -U aleserra -d api_projeto**
+
+Dentro do psql:
+```http
+SELECT * FROM weather LIMIT 5;
+\q
+```
+**Iniciar o Servidor da API Localmente (Se Necessário):**
+
+
+```http
+uvicorn app.main:app --reload
+```
+Ou, via Docker:
+
+
+```http
+docker-compose up --build
+```
