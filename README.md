@@ -37,6 +37,8 @@ Este projeto consiste em uma API RESTful desenvolvida com **FastAPI** que extrai
 
     Crie um arquivo `.env` na raiz do projeto com o seguinte 
     **Atenção:** Nunca compartilhe seu arquivo `.env` publicamente. Ele está incluído no `.gitignore` para proteger suas informações sensíveis.
+    
+-> Instalar o requirements.txt
 
 3. **Criar o Arquivo `.gitignore`:**
 
