@@ -35,14 +35,8 @@ Este projeto consiste em uma API RESTful desenvolvida com **FastAPI** que extrai
 
 2. **Configurar as Variáveis de Ambiente:**
 
-    Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
-
-    ```env
-    DATABASE_URL=postgresql://aleserra:sua_senha_segura@db:5432/api_projeto
-    WEATHERAPI_KEY=292c5f7764e04ceda70201000240910
-    ```
-
-    **⚠️ Atenção:** Nunca compartilhe seu arquivo `.env` publicamente. Ele está incluído no `.gitignore` para proteger suas informações sensíveis.
+    Crie um arquivo `.env` na raiz do projeto com o seguinte 
+    **Atenção:** Nunca compartilhe seu arquivo `.env` publicamente. Ele está incluído no `.gitignore` para proteger suas informações sensíveis.
 
 3. **Criar o Arquivo `.gitignore`:**
 
